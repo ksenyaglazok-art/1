@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Генератор идей для постов</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -11,63 +14,318 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --bg: #0c0a14;
+      --card: rgba(22, 18, 36, 0.72);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f0ecf8;
+      --muted: #9b93b0;
+      --accent: #a78bfa;
+      --accent-2: #f472b6;
+      --glow: rgba(167, 139, 250, 0.35);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
     body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+      font-family: "Manrope", system-ui, sans-serif;
+      background: var(--bg);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 2rem;
-      color: #1a1a2e;
+      color: var(--text);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Фоновые орбы */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-orb--1 {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, #7c3aed 0%, transparent 70%);
+      top: -10%;
+      left: -5%;
+      animation: float-1 12s ease-in-out infinite;
+    }
+
+    .bg-orb--2 {
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, #db2777 0%, transparent 70%);
+      bottom: -8%;
+      right: -5%;
+      animation: float-2 14s ease-in-out infinite;
+    }
+
+    .bg-orb--3 {
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, #2563eb 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: float-3 10s ease-in-out infinite;
+    }
+
+    @keyframes float-1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, 30px) scale(1.08); }
+    }
+
+    @keyframes float-2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-35px, -25px) scale(1.1); }
+    }
+
+    @keyframes float-3 {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+      50% { transform: translate(-50%, -55%) scale(1.15); opacity: 0.7; }
     }
 
     main {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-      padding: 2.5rem 3rem;
-      max-width: 480px;
+      position: relative;
+      z-index: 1;
+      background: var(--card);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2.75rem 2.5rem;
+      max-width: 520px;
       width: 100%;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+        0 24px 64px rgba(0, 0, 0, 0.45);
+      animation: card-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes card-in {
+      from {
+        opacity: 0;
+        transform: translateY(32px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(167, 139, 250, 0.12);
+      border: 1px solid rgba(167, 139, 250, 0.25);
+      padding: 0.35rem 0.75rem;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
+      animation: fade-up 0.6s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
     }
 
     h1 {
-      font-size: 1.5rem;
+      font-family: "Unbounded", sans-serif;
+      font-size: clamp(1.35rem, 4vw, 1.65rem);
       font-weight: 700;
-      margin-bottom: 1.5rem;
-      line-height: 1.3;
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #fff 30%, #c4b5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fade-up 0.6s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      animation: fade-up 0.6s 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     ul {
       list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
     }
 
     li {
-      padding: 1rem 1.25rem;
-      margin-bottom: 0.75rem;
-      background: #f8f9fc;
-      border-radius: 10px;
-      border-left: 4px solid #6366f1;
-      font-size: 1rem;
-      transition: background 0.2s;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: default;
+      overflow: hidden;
+      transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        background 0.35s ease;
+      animation: item-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
-    li:last-child {
-      margin-bottom: 0;
+    li:nth-child(1) { animation-delay: 0.45s; }
+    li:nth-child(2) { animation-delay: 0.58s; }
+    li:nth-child(3) { animation-delay: 0.71s; }
+
+    @keyframes item-in {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    li::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(167, 139, 250, 0.08) 50%, transparent 60%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
     }
 
     li:hover {
-      background: #eef0f8;
+      transform: translateX(6px) scale(1.02);
+      border-color: rgba(167, 139, 250, 0.35);
+      background: rgba(167, 139, 250, 0.06);
+      box-shadow: 0 8px 32px var(--glow);
+    }
+
+    li:hover::before {
+      transform: translateX(100%);
+    }
+
+    .item-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    li:nth-child(1) .item-icon {
+      background: rgba(167, 139, 250, 0.15);
+    }
+
+    li:nth-child(2) .item-icon {
+      background: rgba(244, 114, 182, 0.15);
+    }
+
+    li:nth-child(3) .item-icon {
+      background: rgba(96, 165, 250, 0.15);
+    }
+
+    li:hover .item-icon {
+      transform: rotate(-8deg) scale(1.1);
+    }
+
+    .item-text {
+      flex: 1;
+      line-height: 1.4;
+    }
+
+    .item-arrow {
+      flex-shrink: 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    }
+
+    li:hover .item-arrow {
+      opacity: 1;
+      transform: translateX(0);
+      color: var(--accent);
     }
   </style>
 </head>
 <body>
+  <div class="bg-orb bg-orb--1" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb--2" aria-hidden="true"></div>
+  <div class="bg-orb bg-orb--3" aria-hidden="true"></div>
+
   <main>
+    <div class="badge">Контент-студия</div>
     <h1>Генератор идей для постов</h1>
+    <p class="subtitle">Выберите формат — и начните творить</p>
+
     <ul>
-      <li>5 идей постов для экспертов</li>
-      <li>3 идеи сторис на сегодня</li>
-      <li>Контент план на неделю</li>
+      <li>
+        <span class="item-icon">✦</span>
+        <span class="item-text">5 идей постов для экспертов</span>
+        <span class="item-arrow">→</span>
+      </li>
+      <li>
+        <span class="item-icon">◎</span>
+        <span class="item-text">3 идеи сторис на сегодня</span>
+        <span class="item-arrow">→</span>
+      </li>
+      <li>
+        <span class="item-icon">▦</span>
+        <span class="item-text">Контент план на неделю</span>
+        <span class="item-arrow">→</span>
+      </li>
     </ul>
   </main>
 </body>
