@@ -163,6 +163,24 @@
       letter-spacing: 0.02em;
     }
 
+    .hero-illustration {
+      display: block;
+      width: 100%;
+      max-width: clamp(16rem, 72vw, 30rem);
+      height: auto;
+      margin: 0.75rem 0 1.5rem;
+      border-radius: 14px;
+      object-fit: contain;
+      opacity: 0;
+      animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.28s forwards;
+      filter: drop-shadow(0 6px 20px rgba(26, 20, 16, 0.08));
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .hero-illustration:hover {
+      transform: scale(1.02);
+    }
+
     .subtitle {
       font-size: 1.05rem;
       color: rgba(26, 20, 16, 0.65);
@@ -644,6 +662,16 @@
       Генератор идей для постов
       <span>Вдохновение для экспертов и авторов</span>
     </h1>
+
+    <img
+      class="hero-illustration"
+      src="hero-illustration.jpg"
+      alt="Вдохновение, идеи и мотивация — три ключевых элемента контента"
+      width="940"
+      height="368"
+      loading="eager"
+      decoding="async"
+    >
 
     <p class="subtitle">
       Выберите формат — и получите готовые идеи для публикаций, сторис и недельного плана.
