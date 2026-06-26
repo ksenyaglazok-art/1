@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Генератор идей для постов</title>
+  <title>Генератор идей для постов — детская библиотека)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Rubik:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #1a1410;
-      --cream: #f5efe6;
-      --paper: #ebe3d6;
+      --ink: #2a3d4f;
+      --cream: #fff9f0;
+      --paper: #f3e8d4;
       --coral: #e85d3a;
-      --coral-soft: #f4a88a;
-      --sage: #5c7a6b;
-      --gold: #c9a227;
-      --shadow: rgba(26, 20, 16, 0.12);
-      --grain-opacity: 0.04;
+      --coral-soft: #ffc9a8;
+      --sage: #4a9b6e;
+      --gold: #f0a830;
+      --sky: #4a90d9;
+      --shadow: rgba(42, 61, 79, 0.1);
+      --grain-opacity: 0.035;
     }
 
     *, *::before, *::after {
@@ -32,11 +33,14 @@
 
     body {
       min-height: 100vh;
-      font-family: 'Onest', sans-serif;
+      font-family: 'PT Sans', 'Segoe UI', system-ui, sans-serif;
+      font-size: 1.0625rem;
       background: var(--cream);
       color: var(--ink);
       overflow-x: hidden;
-      line-height: 1.6;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     /* Фоновая атмосфера */
@@ -55,9 +59,9 @@
       top: -20%;
       left: -20%;
       background:
-        radial-gradient(ellipse 60% 50% at 15% 20%, rgba(232, 93, 58, 0.18) 0%, transparent 55%),
-        radial-gradient(ellipse 50% 40% at 85% 75%, rgba(92, 122, 107, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse 40% 35% at 70% 15%, rgba(201, 162, 39, 0.12) 0%, transparent 45%);
+        radial-gradient(ellipse 60% 50% at 15% 20%, rgba(74, 144, 217, 0.16) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 85% 75%, rgba(74, 155, 110, 0.14) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 35% at 70% 15%, rgba(240, 168, 48, 0.14) 0%, transparent 45%);
       animation: meshDrift 20s ease-in-out infinite alternate;
     }
 
@@ -85,7 +89,7 @@
     .shape-1 {
       width: 320px;
       height: 320px;
-      background: var(--coral-soft);
+      background: #a8d4f5;
       top: 10%;
       right: -5%;
       animation-delay: 0s;
@@ -116,15 +120,78 @@
       padding: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 5vw, 2.5rem);
     }
 
+    .page-header {
+      position: relative;
+      margin-bottom: 0.75rem;
+      padding-right: clamp(4.5rem, 14vw, 7rem);
+    }
+
+    .page-header__main {
+      text-align: center;
+    }
+
+    .library-logo {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: clamp(4.25rem, 13vw, 6.5rem);
+      height: clamp(4.25rem, 13vw, 6.5rem);
+      object-fit: contain;
+      border-radius: 50%;
+      background: #fff;
+      padding: 0.2rem;
+      box-shadow: 0 4px 18px var(--shadow);
+      opacity: 0;
+      animation: logoFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .library-logo:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes logoFadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.85) rotate(-8deg);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+      }
+    }
+
+    .page-header .badge {
+      margin-bottom: 1rem;
+      justify-content: center;
+    }
+
+    .page-header h1 {
+      margin-bottom: 0;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .page-header {
+        padding-right: clamp(4.25rem, 13vw, 6.5rem);
+      }
+
+      .library-logo {
+        top: 0;
+        right: 0;
+        left: auto;
+        margin: 0;
+      }
+    }
+
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--sage);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: #1e4a7a;
       margin-bottom: 1.5rem;
       opacity: 0;
       animation: slideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
@@ -134,7 +201,7 @@
       content: '';
       width: 24px;
       height: 2px;
-      background: var(--coral);
+      background: var(--sky);
       animation: lineGrow 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
     }
 
@@ -144,11 +211,11 @@
     }
 
     h1 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: clamp(1.75rem, 5vw, 2.75rem);
+      font-family: 'Rubik', 'PT Sans', 'Segoe UI', sans-serif;
+      font-size: clamp(1.85rem, 5vw, 2.75rem);
       font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
+      line-height: 1.25;
+      letter-spacing: 0;
       margin-bottom: 0.75rem;
       opacity: 0;
       animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
@@ -156,11 +223,13 @@
 
     h1 span {
       display: block;
-      color: var(--coral);
-      font-size: 0.55em;
-      font-weight: 500;
-      margin-top: 0.35em;
-      letter-spacing: 0.02em;
+      color: #1e5a9e;
+      font-family: 'PT Sans', 'Segoe UI', sans-serif;
+      font-size: clamp(1rem, 2.8vw, 1.35rem);
+      font-weight: 400;
+      margin-top: 0.5em;
+      letter-spacing: 0;
+      line-height: 1.45;
     }
 
     .hero-illustration {
@@ -168,7 +237,7 @@
       width: 100%;
       max-width: clamp(16rem, 72vw, 30rem);
       height: auto;
-      margin: 0.75rem 0 1.5rem;
+      margin: 0.75rem auto 1.5rem;
       border-radius: 14px;
       object-fit: contain;
       opacity: 0;
@@ -182,10 +251,11 @@
     }
 
     .subtitle {
-      font-size: 1.05rem;
-      color: rgba(26, 20, 16, 0.65);
-      max-width: 42ch;
-      margin-bottom: 3rem;
+      font-size: 1.125rem;
+      color: #243a4d;
+      max-width: 46ch;
+      margin: 0 auto 3rem;
+      text-align: center;
       opacity: 0;
       animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
     }
@@ -279,7 +349,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Unbounded', sans-serif;
+      font-family: 'Rubik', 'PT Sans', sans-serif;
       font-size: 1.1rem;
       font-weight: 700;
       color: var(--cream);
@@ -289,7 +359,7 @@
     }
 
     .idea-card:hover .idea-number {
-      background: var(--coral);
+      background: var(--sky);
       transform: rotate(-6deg) scale(1.08);
     }
 
@@ -307,14 +377,14 @@
     }
 
     .idea-title {
-      font-weight: 600;
-      font-size: 1.05rem;
+      font-weight: 700;
+      font-size: 1.1rem;
       margin-bottom: 0.2rem;
       transition: color 0.3s ease;
     }
 
     .idea-card:hover .idea-title {
-      color: var(--coral);
+      color: var(--sky);
     }
 
     .idea-card:nth-child(2):hover .idea-title {
@@ -326,8 +396,8 @@
     }
 
     .idea-hint {
-      font-size: 0.85rem;
-      color: rgba(26, 20, 16, 0.5);
+      font-size: 0.95rem;
+      color: #4a5f72;
     }
 
     .idea-arrow {
@@ -351,7 +421,7 @@
 
     .idea-card:hover .idea-arrow {
       transform: translateX(4px);
-      background: var(--coral);
+      background: var(--sky);
     }
 
     .idea-card:hover .idea-arrow svg {
@@ -370,7 +440,7 @@
     .footer-line {
       margin-top: 3.5rem;
       height: 3px;
-      background: linear-gradient(90deg, var(--coral), var(--gold), var(--sage), transparent);
+      background: linear-gradient(90deg, var(--sky), var(--gold), var(--sage), transparent);
       border-radius: 2px;
       transform-origin: left;
       animation: lineExpand 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1s both;
@@ -383,8 +453,8 @@
 
     .footer-note {
       margin-top: 1.25rem;
-      font-size: 0.8rem;
-      color: rgba(26, 20, 16, 0.4);
+      font-size: 0.9rem;
+      color: #5a6d7d;
       opacity: 0;
       animation: fadeIn 0.6s ease 1.3s forwards;
     }
@@ -398,7 +468,7 @@
       display: inline-block;
       width: 8px;
       height: 8px;
-      background: var(--coral);
+      background: var(--sky);
       border-radius: 50%;
       margin-left: 6px;
       vertical-align: middle;
@@ -440,7 +510,7 @@
     }
 
     .results-title {
-      font-family: 'Unbounded', sans-serif;
+      font-family: 'Rubik', 'PT Sans', sans-serif;
       font-size: 1rem;
       font-weight: 500;
       line-height: 1.4;
@@ -502,7 +572,7 @@
 
     .result-index {
       flex-shrink: 0;
-      font-family: 'Unbounded', sans-serif;
+      font-family: 'Rubik', 'PT Sans', sans-serif;
       font-size: 0.7rem;
       font-weight: 700;
       color: var(--coral);
@@ -518,16 +588,16 @@
     }
 
     .result-text {
-      font-size: 0.95rem;
-      line-height: 1.5;
+      font-size: 1rem;
+      line-height: 1.55;
     }
 
     .result-day {
       display: block;
-      font-weight: 600;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: none;
+      letter-spacing: 0.02em;
       color: var(--gold);
       margin-bottom: 0.2rem;
     }
@@ -540,8 +610,8 @@
     }
 
     .btn {
-      font-family: 'Onest', sans-serif;
-      font-size: 0.9rem;
+      font-family: 'PT Sans', 'Segoe UI', sans-serif;
+      font-size: 1rem;
       font-weight: 600;
       padding: 0.7rem 1.25rem;
       border: none;
@@ -656,17 +726,32 @@
   </div>
 
   <main class="page">
-    <div class="badge">Контент-студия<span class="pulse-dot"></span></div>
+    <header class="page-header">
+      <div class="page-header__main">
+        <div class="badge">Ростовская областная детская библиотека
+           имени В.М. Величкиной (ГБУК РО "РОДБВ")<span class="pulse-dot"></span></div>
 
-    <h1>
-      Генератор идей для постов
-      <span>Вдохновение для экспертов и авторов</span>
-    </h1>
+        <h1>
+          Генератор идей для постов
+          <span>Для библиотекарей, родителей и юных читателей</span>
+        </h1>
+      </div>
+
+      <img
+        class="library-logo"
+        src="library-logo.png"
+        alt="Ростовская областная детская библиотека имени В.М. Величкиной"
+        width="200"
+        height="200"
+        loading="eager"
+        decoding="async"
+      >
+    </header>
 
     <img
       class="hero-illustration"
       src="hero-illustration.jpg"
-      alt="Вдохновение, идеи и мотивация — три ключевых элемента контента"
+      alt="Вдохновение, идеи и мотивация к чтению в детской библиотеке"
       width="940"
       height="368"
       loading="eager"
@@ -674,15 +759,15 @@
     >
 
     <p class="subtitle">
-      Выберите формат — и получите готовые идеи для публикаций, сторис и недельного плана.
+      Выберите формат — и получите готовые идеи для соцсетей библиотеки: посты о книгах, сторис с мероприятиями и план на неделю.
     </p>
 
     <ul class="ideas-list">
-      <li class="idea-card" tabindex="0" role="button" data-type="posts" aria-label="Сгенерировать 5 идей постов для экспертов">
+      <li class="idea-card" tabindex="0" role="button" data-type="posts" aria-label="Сгенерировать 5 идей постов для детской библиотеки">
         <div class="idea-number">5</div>
         <div class="idea-content">
-          <div class="idea-title">5 идей постов для экспертов</div>
-          <div class="idea-hint">Глубокие темы, кейсы и экспертные разборы</div>
+          <div class="idea-title">5 идей постов для библиотеки</div>
+          <div class="idea-hint">Книги, мероприятия, советы родителям и юным читателям</div>
         </div>
         <div class="idea-arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -691,11 +776,11 @@
         </div>
       </li>
 
-      <li class="idea-card" tabindex="0" role="button" data-type="stories" aria-label="Сгенерировать 3 идеи сторис на сегодня">
+      <li class="idea-card" tabindex="0" role="button" data-type="stories" aria-label="Сгенерировать 3 идеи сторис для библиотеки на сегодня">
         <div class="idea-number">3</div>
         <div class="idea-content">
           <div class="idea-title">3 идеи сторис на сегодня</div>
-          <div class="idea-hint">Быстрые форматы для Stories и Reels</div>
+          <div class="idea-hint">Закулисье библиотеки, опросы и короткие рубрики</div>
         </div>
         <div class="idea-arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -704,11 +789,11 @@
         </div>
       </li>
 
-      <li class="idea-card" tabindex="0" role="button" data-type="week" aria-label="Сгенерировать контент план на неделю">
+      <li class="idea-card" tabindex="0" role="button" data-type="week" aria-label="Сгенерировать контент план библиотеки на неделю">
         <div class="idea-number">7</div>
         <div class="idea-content">
-          <div class="idea-title">Контент план на неделю</div>
-          <div class="idea-hint">Структура публикаций на 7 дней вперёд</div>
+          <div class="idea-title">Контент-план на неделю</div>
+          <div class="idea-hint">Расписание публикаций: от книжной полки до мастер-класса</div>
         </div>
         <div class="idea-arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -731,62 +816,62 @@
     </section>
 
     <div class="footer-line" aria-hidden="true"></div>
-    <p class="footer-note">Нажмите на карточку, чтобы сгенерировать идеи</p>
+    <p class="footer-note">Нажмите на карточку — подберём идеи с книжной полки</p>
   </main>
 
   <script>
     const IDEAS = {
       posts: [
-        'Разбор типичной ошибки в вашей нише — и как её избежать',
-        'История клиента: что было до работы с вами и что изменилось после',
-        '3 инструмента, без которых вы не представляете свою работу',
-        'Миф vs реальность: развенчиваем популярное заблуждение в профессии',
-        'Чек-лист для тех, кто только начинает в вашей сфере',
-        'Как я пришёл к своей методике — личный путь эксперта',
-        'Топ-5 вопросов, которые вам задают чаще всего (и развёрнутые ответы)',
-        'Сравнение двух подходов: плюсы, минусы и когда что выбирать',
-        'Кейс из практики: задача, решение, результат в цифрах',
-        'Что бы я сделал иначе, если начинал карьеру заново',
-        'Тренды в нише: что актуально сейчас и куда движется рынок',
-        'Разбор чужого контента: что сработало и почему',
+        'Книга недели: обложка, краткий анонс и для кого подойдёт (возраст, жанр)',
+        '«5 книг, которые стоит прочитать этой осенью» — подборка с фото полки',
+        'Анонс ближайшего мероприятия: час сказок, мастер-класс или встреча с автором',
+        'Совет родителям: как привить ребёнку любовь к чтению — 3 простых шага',
+        'Знаете ли вы? Интересный факт о писателе, чьи книги есть в нашей библиотеке',
+        'Новые поступления: покажите свежие книги на прилавке или полке',
+        'Рубрика «Маленький читатель рекомендует» — отзыв ребёнка о прочитанной книге',
+        'Викторина: угадайте героя или книгу по одной цитате',
+        'Как устроена библиотека: экскурсия по залам в фотографиях',
+        'Памятка: как оформить читательский билет и что можно взять домой',
+        'День рождения писателя — поздравление и подборка его произведений',
+        'Читательский марафон: приглашение принять участие и условия',
       ],
       stories: [
-        'Опрос: «Какая тема вам интереснее?» — 2–3 варианта ответа',
-        'За кулисами: покажите рабочий процесс за 15 секунд',
-        'Быстрый лайфхак — одна полезная мысль без воды',
-        '«До / после» в формате слайдера или короткого видео',
-        'Ответ на частый вопрос из директ — голосом или текстом на экране',
-        'Мини-челлендж: пригласите подписчиков сделать что-то за день',
-        'Реакция на тренд в нише — ваше экспертное мнение',
-        'Сторис-квиз: угадайте термин / инструмент / цену',
-        'Покажите свой рабочий стол, инструменты или закулисье проекта',
-        '«Совет дня» — одна фраза крупным шрифтом на красивом фоне',
+        'Опрос: «Какую сказку прочитать на следующем часе сказок?» — 2–3 варианта',
+        'Закулисье: как библиотекарь готовит книги к выдаче или оформляет витрину',
+        '«Книга дня» — покажите обложку и задайте вопрос: читали ли вы?',
+        'Мини-загадка от сказочного героя — ответ в следующей сторис',
+        'Короткое видео: первые страницы новой детской книги',
+        'Ребёнок за кадром рассказывает, почему ему понравилась книга',
+        'Анонс завтрашнего мероприятия — время, место, для какого возраста',
+        '«Найди на полке» — покажите фрагмент стеллажа, угадайте раздел',
+        'Сторис-опрос: «Сколько книг вы прочитали за месяц?»',
+        'Поздравление юного читателя с получением награды за читательский марафон',
       ],
       week: {
         days: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
         topics: [
-          'Экспертный пост: разбор актуальной темы в нише',
-          'Сторис-серия: закулисье и личный момент',
-          'Карусель: пошаговая инструкция или чек-лист',
-          'Кейс клиента с конкретными результатами',
-          'Прямой эфир или Reels с ответами на вопросы',
-          'Лёгкий контент: мем, опрос или личная история',
-          'Итоги недели + анонс планов на следующую',
-          'Сравнение продуктов, методов или подходов',
-          'Развенчание мифа в вашей профессии',
-          'Подборка полезных ресурсов и инструментов',
-          'Пост-рефлексия: урок, который вы вынесли на этой неделе',
-          'Коллаборация или репост эксперта из смежной ниши',
-          'Мотивационный пост: почему стоит не сдаваться',
-          'Закулисье проекта — процесс от идеи до результата',
+          'Книга недели: анонс с обложкой и кратким описанием',
+          'Сторис-опрос или викторина для подписчиков',
+          'Анонс детского мероприятия в библиотеке',
+          'Совет родителям о чтении с детьми',
+          'Пост о новых поступлениях в фонд библиотеки',
+          'Фотоотчёт с прошедшего часа сказок или мастер-класса',
+          'Итоги недели и анонс событий на следующую',
+          'Рубрика «Герой книги» — знакомство с персонажем',
+          'Памятка: правила пользования библиотекой для новых читателей',
+          'День автора: факты о писателе и его книги в нашей полке',
+          'Читательский дневник: идеи, как вести записи о прочитанном',
+          'Подборка книг на определённую тему (дружба, школа, природа)',
+          'Приглашение на семейное чтение или совместный просмотр иллюстраций',
+          'Благодарность волонтёрам или партнёрам библиотеки',
         ],
       },
     };
 
     const CONFIG = {
-      posts: { count: 5, title: '5 идей постов для экспертов', theme: 'posts' },
-      stories: { count: 3, title: '3 идеи сторис на сегодня', theme: 'stories' },
-      week: { count: 7, title: 'Контент план на неделю', theme: 'week' },
+      posts: { count: 5, title: '5 идей постов для детской библиотеки', theme: 'posts' },
+      stories: { count: 3, title: '3 идеи сторис библиотеки на сегодня', theme: 'stories' },
+      week: { count: 7, title: 'Контент-план библиотеки на неделю', theme: 'week' },
     };
 
     const cards = document.querySelectorAll('.idea-card');
@@ -868,7 +953,7 @@
 
       resultsEl.hidden = false;
       resultsEl.classList.remove('is-visible');
-      resultsTitle.textContent = 'Генерируем идеи…';
+      resultsTitle.textContent = 'Листаем страницы…';
       resultsList.innerHTML = `
         <li class="loader-dots" aria-hidden="true">
           <span></span><span></span><span></span>
