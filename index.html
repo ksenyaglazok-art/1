@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Генератор идей для постов — детская библиотека)</title>
+  <title>Генератор идей для библиотекарей</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Rubik:wght@500;600;700&display=swap" rel="stylesheet">
@@ -43,7 +43,6 @@
       text-rendering: optimizeLegibility;
     }
 
-    /* Фоновая атмосфера */
     .bg-layer {
       position: fixed;
       inset: 0;
@@ -111,7 +110,6 @@
       66% { transform: translate(15px, -10px) scale(0.95); }
     }
 
-    /* Основной контент */
     .page {
       position: relative;
       z-index: 1;
@@ -123,42 +121,10 @@
     .page-header {
       position: relative;
       margin-bottom: 0.75rem;
-      padding-right: clamp(4.5rem, 14vw, 7rem);
     }
 
     .page-header__main {
       text-align: center;
-    }
-
-    .library-logo {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: clamp(4.25rem, 13vw, 6.5rem);
-      height: clamp(4.25rem, 13vw, 6.5rem);
-      object-fit: contain;
-      border-radius: 50%;
-      background: #fff;
-      padding: 0.2rem;
-      box-shadow: 0 4px 18px var(--shadow);
-      opacity: 0;
-      animation: logoFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .library-logo:hover {
-      transform: scale(1.05);
-    }
-
-    @keyframes logoFadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.85) rotate(-8deg);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1) rotate(0);
-      }
     }
 
     .page-header .badge {
@@ -169,19 +135,6 @@
     .page-header h1 {
       margin-bottom: 0;
       text-align: center;
-    }
-
-    @media (max-width: 480px) {
-      .page-header {
-        padding-right: clamp(4.25rem, 13vw, 6.5rem);
-      }
-
-      .library-logo {
-        top: 0;
-        right: 0;
-        left: auto;
-        margin: 0;
-      }
     }
 
     .badge {
@@ -232,28 +185,10 @@
       line-height: 1.45;
     }
 
-    .hero-illustration {
-      display: block;
-      width: 100%;
-      max-width: clamp(16rem, 72vw, 30rem);
-      height: auto;
-      margin: 0.75rem auto 1.5rem;
-      border-radius: 14px;
-      object-fit: contain;
-      opacity: 0;
-      animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.28s forwards;
-      filter: drop-shadow(0 6px 20px rgba(26, 20, 16, 0.08));
-      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .hero-illustration:hover {
-      transform: scale(1.02);
-    }
-
     .subtitle {
       font-size: 1.125rem;
       color: #243a4d;
-      max-width: 46ch;
+      max-width: 52ch;
       margin: 0 auto 3rem;
       text-align: center;
       opacity: 0;
@@ -271,7 +206,6 @@
       }
     }
 
-    /* Список идей */
     .ideas-list {
       list-style: none;
       display: flex;
@@ -301,8 +235,10 @@
     }
 
     .idea-card:nth-child(1) { animation-delay: 0.5s; }
-    .idea-card:nth-child(2) { animation-delay: 0.65s; }
-    .idea-card:nth-child(3) { animation-delay: 0.8s; }
+    .idea-card:nth-child(2) { animation-delay: 0.6s; }
+    .idea-card:nth-child(3) { animation-delay: 0.7s; }
+    .idea-card:nth-child(4) { animation-delay: 0.8s; }
+    .idea-card:nth-child(5) { animation-delay: 0.9s; }
 
     @keyframes cardReveal {
       from {
@@ -367,8 +303,22 @@
       background: var(--sage);
     }
 
-    .idea-card:nth-child(3):hover .idea-number {
-      background: var(--gold);
+    .idea-card:nth-child(4):hover .idea-number,
+    .idea-card:nth-child(4):hover .idea-arrow {
+      background: var(--coral);
+    }
+
+    .idea-card:nth-child(4):hover .idea-title {
+      color: var(--coral);
+    }
+
+    .idea-card:nth-child(5):hover .idea-number,
+    .idea-card:nth-child(5):hover .idea-arrow {
+      background: #7b5ea7;
+    }
+
+    .idea-card:nth-child(5):hover .idea-title {
+      color: #7b5ea7;
     }
 
     .idea-content {
@@ -391,8 +341,24 @@
       color: var(--sage);
     }
 
+    .idea-card:nth-child(3):hover .idea-number {
+      background: var(--gold);
+    }
+
     .idea-card:nth-child(3):hover .idea-title {
       color: var(--gold);
+    }
+
+    .idea-card:nth-child(3):hover .idea-arrow {
+      background: var(--gold);
+    }
+
+    .idea-card:nth-child(4):hover .idea-arrow {
+      background: var(--coral);
+    }
+
+    .idea-card:nth-child(5):hover .idea-arrow {
+      background: #7b5ea7;
     }
 
     .idea-hint {
@@ -436,7 +402,6 @@
       background: var(--gold);
     }
 
-    /* Декоративная линия */
     .footer-line {
       margin-top: 3.5rem;
       height: 3px;
@@ -451,19 +416,63 @@
       to { transform: scaleX(1); opacity: 1; }
     }
 
-    .footer-note {
-      margin-top: 1.25rem;
-      font-size: 0.9rem;
-      color: #5a6d7d;
+    .how-to-use {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(42, 61, 79, 0.08);
+      border-radius: 14px;
       opacity: 0;
       animation: fadeIn 0.6s ease 1.3s forwards;
+    }
+
+    .how-to-use__title {
+      font-family: 'Rubik', 'PT Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      text-align: center;
+    }
+
+    .how-to-use__list {
+      margin: 0;
+      padding-left: 1.25rem;
+      color: #4a5f72;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .how-to-use__list li + li {
+      margin-top: 0.4rem;
+    }
+
+    .copyright {
+      margin-top: 2rem;
+      padding-bottom: 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6b7f8f;
+      opacity: 0;
+      animation: fadeIn 0.6s ease 1.5s forwards;
+    }
+
+    .copyright a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(107, 127, 143, 0.35);
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .copyright a:hover {
+      color: var(--ink);
+      border-color: var(--ink);
     }
 
     @keyframes fadeIn {
       to { opacity: 1; }
     }
 
-    /* Пульсирующая точка */
     .pulse-dot {
       display: inline-block;
       width: 8px;
@@ -480,7 +489,6 @@
       50% { opacity: 0.5; transform: scale(0.85); }
     }
 
-    /* Результаты генерации */
     .results {
       margin-top: 2.5rem;
       padding: 1.75rem;
@@ -563,6 +571,14 @@
       border-left-color: var(--gold);
     }
 
+    .results[data-theme="events"] .result-item {
+      border-left-color: var(--coral);
+    }
+
+    .results[data-theme="exhibitions"] .result-item {
+      border-left-color: #7b5ea7;
+    }
+
     @keyframes resultReveal {
       to {
         opacity: 1;
@@ -585,6 +601,22 @@
 
     .results[data-theme="week"] .result-index {
       color: var(--gold);
+    }
+
+    .results[data-theme="events"] .result-index {
+      color: var(--coral);
+    }
+
+    .results[data-theme="exhibitions"] .result-index {
+      color: #7b5ea7;
+    }
+
+    .result-field {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #1e5a9e;
+      margin-bottom: 0.25rem;
     }
 
     .result-text {
@@ -644,6 +676,16 @@
       box-shadow: 0 4px 16px rgba(201, 162, 39, 0.35);
     }
 
+    .results[data-theme="events"] .btn-primary:hover {
+      background: var(--coral);
+      box-shadow: 0 4px 16px rgba(232, 93, 58, 0.35);
+    }
+
+    .results[data-theme="exhibitions"] .btn-primary:hover {
+      background: #7b5ea7;
+      box-shadow: 0 4px 16px rgba(123, 94, 167, 0.35);
+    }
+
     .btn-secondary {
       background: transparent;
       color: var(--ink);
@@ -655,7 +697,6 @@
       background: rgba(26, 20, 16, 0.04);
     }
 
-    /* Состояние загрузки */
     .idea-card.is-loading {
       pointer-events: none;
       opacity: 0.7;
@@ -679,6 +720,16 @@
     .idea-card:nth-child(3).is-active {
       border-color: rgba(201, 162, 39, 0.4);
       box-shadow: 0 8px 32px rgba(201, 162, 39, 0.15);
+    }
+
+    .idea-card:nth-child(4).is-active {
+      border-color: rgba(232, 93, 58, 0.4);
+      box-shadow: 0 8px 32px rgba(232, 93, 58, 0.15);
+    }
+
+    .idea-card:nth-child(5).is-active {
+      border-color: rgba(123, 94, 167, 0.4);
+      box-shadow: 0 8px 32px rgba(123, 94, 167, 0.15);
     }
 
     @keyframes spin {
@@ -728,46 +779,25 @@
   <main class="page">
     <header class="page-header">
       <div class="page-header__main">
-        <div class="badge">Ростовская областная детская библиотека
-           имени В.М. Величкиной (ГБУК РО "РОДБВ")<span class="pulse-dot"></span></div>
+        <div class="badge">Ростовская областная детская библиотека имени В.М. Величкиной (ГБУК РО «РОДБВ»)<span class="pulse-dot"></span></div>
 
         <h1>
-          Генератор идей для постов
-          <span>Для библиотекарей, родителей и юных читателей</span>
+          Генератор идей для библиотекарей
+          <span>Посты, мероприятия и выставки для юных читателей</span>
         </h1>
       </div>
-
-      <img
-        class="library-logo"
-        src="library-logo.png"
-        alt="Ростовская областная детская библиотека имени В.М. Величкиной"
-        width="200"
-        height="200"
-        loading="eager"
-        decoding="async"
-      >
     </header>
 
-    <img
-      class="hero-illustration"
-      src="hero-illustration.jpg"
-      alt="Вдохновение, идеи и мотивация к чтению в детской библиотеке"
-      width="940"
-      height="368"
-      loading="eager"
-      decoding="async"
-    >
-
     <p class="subtitle">
-      Выберите формат — и получите готовые идеи для соцсетей библиотеки: посты о книгах, сторис с мероприятиями и план на неделю.
+      Выберите раздел — получите готовые идеи для соцсетей, названия мероприятий и книжных выставок по направлениям знаний.
     </p>
 
     <ul class="ideas-list">
-      <li class="idea-card" tabindex="0" role="button" data-type="posts" aria-label="Сгенерировать 5 идей постов для детской библиотеки">
+      <li class="idea-card" tabindex="0" role="button" data-type="posts" aria-label="Сгенерировать 5 идей постов для библиотекаря">
         <div class="idea-number">5</div>
         <div class="idea-content">
-          <div class="idea-title">5 идей постов для библиотеки</div>
-          <div class="idea-hint">Книги, мероприятия, советы родителям и юным читателям</div>
+          <div class="idea-title">5 идей постов для библиотекаря</div>
+          <div class="idea-hint">Анонсы, рекомендации, мероприятия и полезные советы для подписчиков</div>
         </div>
         <div class="idea-arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -776,11 +806,11 @@
         </div>
       </li>
 
-      <li class="idea-card" tabindex="0" role="button" data-type="stories" aria-label="Сгенерировать 3 идеи сторис для библиотеки на сегодня">
+      <li class="idea-card" tabindex="0" role="button" data-type="stories" aria-label="Сгенерировать 3 идеи сторис библиотеки на сегодня">
         <div class="idea-number">3</div>
         <div class="idea-content">
           <div class="idea-title">3 идеи сторис на сегодня</div>
-          <div class="idea-hint">Закулисье библиотеки, опросы и короткие рубрики</div>
+          <div class="idea-hint">Закулисье библиотеки, опросы и короткие форматы для соцсетей</div>
         </div>
         <div class="idea-arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -794,6 +824,32 @@
         <div class="idea-content">
           <div class="idea-title">Контент-план на неделю</div>
           <div class="idea-hint">Расписание публикаций: от книжной полки до мастер-класса</div>
+        </div>
+        <div class="idea-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </div>
+      </li>
+
+      <li class="idea-card" tabindex="0" role="button" data-type="events" aria-label="Сгенерировать 5 названий мероприятий">
+        <div class="idea-number">5</div>
+        <div class="idea-content">
+          <div class="idea-title">Идеи для названий мероприятий</div>
+          <div class="idea-hint">Названия по направлениям: экология, история, искусство, наука и другие</div>
+        </div>
+        <div class="idea-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </div>
+      </li>
+
+      <li class="idea-card" tabindex="0" role="button" data-type="exhibitions" aria-label="Сгенерировать 5 названий книжных выставок">
+        <div class="idea-number">5</div>
+        <div class="idea-content">
+          <div class="idea-title">Идеи для названий книжных выставок</div>
+          <div class="idea-hint">Тематические выставки по направлениям знаний: литература, техника, философия и др.</div>
         </div>
         <div class="idea-arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -816,10 +872,90 @@
     </section>
 
     <div class="footer-line" aria-hidden="true"></div>
-    <p class="footer-note">Нажмите на карточку — подберём идеи с книжной полки</p>
+
+    <section class="how-to-use" aria-label="Инструкция">
+      <h2 class="how-to-use__title">Как пользоваться</h2>
+      <ol class="how-to-use__list">
+        <li>Выберите раздел: посты, сторис, контент-план, мероприятия или выставки.</li>
+        <li>Нажмите на карточку — идеи появятся ниже на странице.</li>
+        <li>Нажмите «Сгенерировать снова», чтобы получить другие варианты.</li>
+        <li>Кнопка «Скопировать» сохранит результат в буфер обмена.</li>
+        <li>Мероприятия и выставки формируются по направлениям знаний: экология, история, искусство, наука, литература и другие.</li>
+      </ol>
+    </section>
+
+    <p class="copyright">
+      © Глазунова Оксана, <a href="mailto:f1otrsektor@yandex.ru">f1otrsektor@yandex.ru</a>
+    </p>
   </main>
 
   <script>
+    const KNOWLEDGE_FIELDS = [
+      { id: 'экология', label: 'экология' },
+      { id: 'история', label: 'история' },
+      { id: 'искусство', label: 'искусство' },
+      { id: 'наука', label: 'наука' },
+      { id: 'литература', label: 'литература' },
+      { id: 'техника', label: 'техника' },
+      { id: 'философия', label: 'философия' },
+      { id: 'география', label: 'география' },
+      { id: 'математика', label: 'математика' },
+      { id: 'музыка', label: 'музыка' },
+      { id: 'спорт', label: 'спорт' },
+      { id: 'обществознание', label: 'обществознание' },
+    ];
+
+    const EVENT_NAMES = {
+      экология: ['Зелёная страница', 'Друзья природы', 'Эко-чтение', 'Книжный сад', 'Планета в словах', 'Эко-квест'],
+      история: ['Страницы памяти', 'Герои в книгах', 'Путешествие во времени', 'Летопись чтения', 'Книга и Родина', 'Временной мост'],
+      искусство: ['Цветная палитра', 'Мир иллюстрации', 'Кисть и перо', 'Творческая мастерская', 'Художник за страницей', 'Арт-лаборатория'],
+      наука: ['Маленькие открыватели', 'Звёздный час', 'Лаборатория «Почему?»', 'Космический квест', 'Учёные сказки', 'Опыты на полке'],
+      литература: ['Сказочная мастерская', 'Литературный круг', 'Поэтический час', 'Книжный калейдоскоп', 'Страницы чудес', 'Час любимых книг'],
+      техника: ['Механизмы чудес', 'Юный изобретатель', 'Роботы и книги', 'Техно-квест', 'Инженерная мастерская', 'Умные машины'],
+      философия: ['Большие вопросы', 'Философский кружок', 'Думай и читай', 'Мудрые мысли', 'Разговор о важном', 'Книга и смысл'],
+      география: ['Кругосветное путешествие', 'Карта приключений', 'Мир на ладони', 'Географический квест', 'Страны и народы', 'Путешествие по книгам'],
+      математика: ['Числовые загадки', 'Математический квест', 'Геометрия чудес', 'Считаем вместе', 'Логические игры', 'Задачник приключений'],
+      музыка: ['Музыкальный час', 'Ноты и слова', 'Поющие книги', 'Ритм и рифма', 'Мелодии детства', 'Концерт на полке'],
+      спорт: ['Спортивный час', 'Чемпионы в книгах', 'Олимпийский квест', 'Здоровый образ жизни', 'Движение и чтение', 'Спорт и дружба'],
+      обществознание: ['Гражданский клуб', 'Права и обязанности', 'Наше общество', 'Добрые дела', 'Семейные ценности', 'Мир вокруг нас'],
+    };
+
+    const EXHIBITION_NAMES = {
+      экология: ['Зелёная полка', 'Книги о природе', 'Земля — наш дом', 'Экологи в детской литературе', 'Заповедник страниц'],
+      история: ['Подвиг в книгах', 'Герои Отечества', 'Страницы войны и мира', 'История в иллюстрациях', 'Память поколений'],
+      искусство: ['Книжная палитра', 'Иллюстраторы детства', 'Живопись в книгах', 'Шедевры обложек', 'Художники слова'],
+      наука: ['Книги об открытиях', 'От А до Я — наука', 'Космос на полке', 'Умные страницы', 'Великие изобретения'],
+      литература: ['Мир сказки', 'Любимые книги', 'Страницы творчества', 'Герои произведений', 'Автор и читатель'],
+      техника: ['Техника в книгах', 'Изобретатели и открытия', 'Мир механизмов', 'Робототехника на полке', 'Инженерные идеи'],
+      философия: ['Вопросы и ответы', 'Мудрость веков', 'Философия для детей', 'Размышления на полке', 'Великие идеи'],
+      география: ['Мир на полке', 'Страны и континенты', 'Путешественники в книгах', 'География детства', 'Карты и приключения'],
+      математика: ['Математика в книгах', 'Числа и фигуры', 'Занимательная арифметика', 'Головоломки на полке', 'Умная математика'],
+      музыка: ['Музыка в литературе', 'Композиторы и книги', 'Песни и сказки', 'Музыкальные истории', 'Нотная галерея'],
+      спорт: ['Спорт в детской литературе', 'Олимпийские герои', 'Книги о спорте', 'Здоровье и физкультура', 'Чемпионы на полке'],
+      обществознание: ['Общество в книгах', 'Права ребёнка', 'Семья и друзья', 'Гражданин с детства', 'Добро и справедливость'],
+    };
+
+    const EVENT_TEMPLATES = [
+      '«{name}» — познавательная программа: {field}',
+      '«{name}»: интерактив по направлению «{field}»',
+      'Семейный клуб «{name}» — {field}',
+      '«{name}» — творческая встреча ({field})',
+      '«{name}» — день открытых дверей ({field})',
+      'Квест-игра «{name}» по направлению {field}',
+      'Мастер-класс «{name}» — тема: {field}',
+      '«{name}» — познавательный час ({field})',
+    ];
+
+    const EXHIBITION_TEMPLATES = [
+      'Книжная выставка «{name}» — {field}',
+      '«{name}»: тематическая полка ({field})',
+      'Выставка-просмотр «{name}» — направление {field}',
+      'Экспозиция «{name}» по теме «{field}»',
+      '«{name}» — книжная галерея ({field})',
+      'Витрина «{name}» — {field}',
+      'Тематическая экспозиция «{name}» ({field})',
+    ];
+
     const IDEAS = {
       posts: [
         'Книга недели: обложка, краткий анонс и для кого подойдёт (возраст, жанр)',
@@ -869,9 +1005,11 @@
     };
 
     const CONFIG = {
-      posts: { count: 5, title: '5 идей постов для детской библиотеки', theme: 'posts' },
-      stories: { count: 3, title: '3 идеи сторис библиотеки на сегодня', theme: 'stories' },
-      week: { count: 7, title: 'Контент-план библиотеки на неделю', theme: 'week' },
+      posts: { count: 5, title: '5 идей постов для библиотекаря', theme: 'posts' },
+      stories: { count: 3, title: '3 идеи сторис на сегодня', theme: 'stories' },
+      week: { count: 7, title: 'Контент-план на неделю', theme: 'week' },
+      events: { count: 5, title: '5 названий мероприятий', theme: 'events' },
+      exhibitions: { count: 5, title: '5 названий книжных выставок', theme: 'exhibitions' },
     };
 
     const cards = document.querySelectorAll('.idea-card');
@@ -898,12 +1036,52 @@
       return shuffle(pool).slice(0, count);
     }
 
+    function pickRandomFields(count) {
+      return shuffle(KNOWLEDGE_FIELDS).slice(0, count);
+    }
+
+    function fillTemplate(template, name, field) {
+      return template
+        .replace(/\{name\}/g, name)
+        .replace(/\{field\}/g, field);
+    }
+
+    function generateNamed(type) {
+      const config = CONFIG[type];
+      const isEvent = type === 'events';
+      const templates = isEvent ? EVENT_TEMPLATES : EXHIBITION_TEMPLATES;
+      const namePool = isEvent ? EVENT_NAMES : EXHIBITION_NAMES;
+      const fields = pickRandomFields(config.count);
+      const usedTexts = new Set();
+
+      return fields.map((field) => {
+        const names = namePool[field.id];
+        let text = '';
+        let attempts = 0;
+
+        while (attempts < 12) {
+          const name = names[Math.floor(Math.random() * names.length)];
+          const template = templates[Math.floor(Math.random() * templates.length)];
+          text = fillTemplate(template, name, field.label);
+          if (!usedTexts.has(text)) break;
+          attempts++;
+        }
+
+        usedTexts.add(text);
+
+        return {
+          text,
+          field: field.label,
+        };
+      });
+    }
+
     function generatePosts() {
-      return pickRandom(IDEAS.posts, CONFIG.posts.count);
+      return pickRandom(IDEAS.posts, CONFIG.posts.count).map((text) => ({ text }));
     }
 
     function generateStories() {
-      return pickRandom(IDEAS.stories, CONFIG.stories.count);
+      return pickRandom(IDEAS.stories, CONFIG.stories.count).map((text) => ({ text }));
     }
 
     function generateWeek() {
@@ -914,7 +1092,9 @@
     function generate(type) {
       if (type === 'posts') return generatePosts();
       if (type === 'stories') return generateStories();
-      return generateWeek();
+      if (type === 'week') return generateWeek();
+      if (type === 'events' || type === 'exhibitions') return generateNamed(type);
+      return [];
     }
 
     function renderResults(type, ideas) {
@@ -936,10 +1116,18 @@
               ${idea.text}
             </div>
           `;
+        } else if (type === 'events' || type === 'exhibitions') {
+          li.innerHTML = `
+            <span class="result-index">${String(i + 1).padStart(2, '0')}</span>
+            <div class="result-text">
+              <span class="result-field">${idea.field}</span>
+              ${idea.text}
+            </div>
+          `;
         } else {
           li.innerHTML = `
             <span class="result-index">${String(i + 1).padStart(2, '0')}</span>
-            <span class="result-text">${idea}</span>
+            <span class="result-text">${idea.text}</span>
           `;
         }
 
@@ -992,9 +1180,12 @@
         if (type === 'week') {
           return `${idea.day}: ${idea.text}`;
         }
-        return `${i + 1}. ${idea}`;
+        if (type === 'events' || type === 'exhibitions') {
+          return `${i + 1}. [${idea.field}] ${idea.text}`;
+        }
+        return `${i + 1}. ${idea.text}`;
       });
-      return `${title}\n\n${lines.join('\n')}`;
+      return `${title}\n\n${lines.join('\n\n')}`;
     }
 
     cards.forEach(card => {
