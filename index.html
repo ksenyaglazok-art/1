@@ -9,16 +9,24 @@
   <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Rubik:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #2a3d4f;
-      --cream: #fff9f0;
-      --paper: #f3e8d4;
-      --coral: #e85d3a;
-      --coral-soft: #ffc9a8;
-      --sage: #4a9b6e;
-      --gold: #f0a830;
-      --sky: #4a90d9;
-      --shadow: rgba(42, 61, 79, 0.1);
-      --grain-opacity: 0.035;
+      --blue: #0056b3;
+      --blue-dark: #004494;
+      --blue-light: #1a7fd4;
+      --orange: #e67e22;
+      --yellow: #ffcc00;
+      --white: #ffffff;
+      --bg: #f0f2f5;
+      --cream: #fdfaf5;
+      --ink: #2c3e50;
+      --text-muted: #5a6a7a;
+      --border: rgba(0, 86, 179, 0.12);
+      --shadow: rgba(0, 40, 90, 0.1);
+      --paper: #e8f2fb;
+      --sky: var(--blue);
+      --coral: var(--orange);
+      --gold: var(--yellow);
+      --sage: var(--blue-light);
+      --grain-opacity: 0.02;
     }
 
     *, *::before, *::after {
@@ -35,12 +43,23 @@
       min-height: 100vh;
       font-family: 'PT Sans', 'Segoe UI', system-ui, sans-serif;
       font-size: 1.0625rem;
-      background: var(--cream);
+      background: var(--bg);
       color: var(--ink);
       overflow-x: hidden;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--blue);
+      z-index: 100;
     }
 
     .bg-layer {
@@ -58,9 +77,9 @@
       top: -20%;
       left: -20%;
       background:
-        radial-gradient(ellipse 60% 50% at 15% 20%, rgba(74, 144, 217, 0.16) 0%, transparent 55%),
-        radial-gradient(ellipse 50% 40% at 85% 75%, rgba(74, 155, 110, 0.14) 0%, transparent 50%),
-        radial-gradient(ellipse 40% 35% at 70% 15%, rgba(240, 168, 48, 0.14) 0%, transparent 45%);
+        radial-gradient(ellipse 60% 50% at 15% 20%, rgba(0, 86, 179, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 85% 75%, rgba(230, 126, 34, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 35% at 70% 15%, rgba(255, 204, 0, 0.12) 0%, transparent 45%);
       animation: meshDrift 20s ease-in-out infinite alternate;
     }
 
@@ -88,7 +107,7 @@
     .shape-1 {
       width: 320px;
       height: 320px;
-      background: #a8d4f5;
+      background: #7eb8e8;
       top: 10%;
       right: -5%;
       animation-delay: 0s;
@@ -97,11 +116,11 @@
     .shape-2 {
       width: 240px;
       height: 240px;
-      background: var(--sage);
+      background: #f5b87a;
       bottom: 15%;
       left: -8%;
       animation-delay: -4s;
-      opacity: 0.25;
+      opacity: 0.28;
     }
 
     @keyframes float {
@@ -113,7 +132,7 @@
     .page {
       position: relative;
       z-index: 1;
-      max-width: 720px;
+      max-width: 860px;
       margin: 0 auto;
       padding: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 5vw, 2.5rem);
     }
@@ -121,46 +140,38 @@
     .page-header {
       position: relative;
       margin-bottom: 0.75rem;
+      padding: 1.5rem 1.5rem 1.25rem;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 2px 12px var(--shadow);
+      border: 1px solid var(--border);
     }
 
     .page-header__main {
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem 1.5rem;
     }
 
-    .page-header .badge {
-      margin-bottom: 1rem;
-      justify-content: center;
+    .page-header__text {
+      flex: 1;
+      min-width: 0;
     }
 
     .page-header h1 {
       margin-bottom: 0;
-      text-align: center;
+      text-align: left;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      color: #1e4a7a;
-      margin-bottom: 1.5rem;
+    .page-header__illustration {
+      flex-shrink: 0;
+      width: clamp(130px, 26vw, 210px);
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
       opacity: 0;
-      animation: slideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
-    }
-
-    .badge::before {
-      content: '';
-      width: 24px;
-      height: 2px;
-      background: var(--sky);
-      animation: lineGrow 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
-    }
-
-    @keyframes lineGrow {
-      from { width: 0; }
-      to { width: 24px; }
+      animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
     }
 
     h1 {
@@ -170,13 +181,14 @@
       line-height: 1.25;
       letter-spacing: 0;
       margin-bottom: 0.75rem;
+      color: var(--blue);
       opacity: 0;
       animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
     }
 
     h1 span {
       display: block;
-      color: #1e5a9e;
+      color: var(--orange);
       font-family: 'PT Sans', 'Segoe UI', sans-serif;
       font-size: clamp(1rem, 2.8vw, 1.35rem);
       font-weight: 400;
@@ -187,9 +199,9 @@
 
     .subtitle {
       font-size: 1.125rem;
-      color: #243a4d;
+      color: var(--text-muted);
       max-width: 52ch;
-      margin: 0 auto 3rem;
+      margin: 0 auto 1rem;
       text-align: center;
       opacity: 0;
       animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
@@ -219,19 +231,17 @@
       align-items: center;
       gap: 1.25rem;
       padding: 1.35rem 1.5rem 1.35rem 1.25rem;
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(26, 20, 16, 0.08);
-      border-radius: 16px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
       cursor: pointer;
       transition:
         transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
         box-shadow 0.4s ease,
-        border-color 0.3s ease,
-        background 0.3s ease;
+        border-color 0.3s ease;
       opacity: 0;
       animation: cardReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      box-shadow: 0 4px 24px var(--shadow);
+      box-shadow: 0 2px 10px var(--shadow);
     }
 
     .idea-card:nth-child(1) { animation-delay: 0.5s; }
@@ -255,18 +265,17 @@
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: 16px;
-      background: linear-gradient(135deg, transparent 60%, rgba(232, 93, 58, 0.06));
+      border-radius: 8px;
+      background: linear-gradient(135deg, transparent 60%, rgba(0, 86, 179, 0.04));
       opacity: 0;
       transition: opacity 0.35s ease;
       pointer-events: none;
     }
 
     .idea-card:hover {
-      transform: translateY(-4px) translateX(6px);
-      box-shadow: 0 12px 40px rgba(26, 20, 16, 0.14);
-      border-color: rgba(232, 93, 58, 0.25);
-      background: rgba(255, 255, 255, 0.75);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 86, 179, 0.14);
+      border-color: rgba(0, 86, 179, 0.25);
     }
 
     .idea-card:hover::after {
@@ -288,37 +297,41 @@
       font-family: 'Rubik', 'PT Sans', sans-serif;
       font-size: 1.1rem;
       font-weight: 700;
-      color: var(--cream);
-      background: var(--ink);
-      border-radius: 12px;
+      color: var(--white);
+      background: var(--blue);
+      border-radius: 8px;
       transition: background 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .idea-card:hover .idea-number {
-      background: var(--sky);
-      transform: rotate(-6deg) scale(1.08);
+      background: var(--blue-light);
+      transform: rotate(-4deg) scale(1.05);
     }
 
     .idea-card:nth-child(2):hover .idea-number {
-      background: var(--sage);
+      background: var(--orange);
     }
 
     .idea-card:nth-child(4):hover .idea-number,
     .idea-card:nth-child(4):hover .idea-arrow {
-      background: var(--coral);
+      background: var(--orange);
     }
 
     .idea-card:nth-child(4):hover .idea-title {
-      color: var(--coral);
+      color: var(--orange);
     }
 
     .idea-card:nth-child(5):hover .idea-number,
     .idea-card:nth-child(5):hover .idea-arrow {
-      background: #7b5ea7;
+      background: var(--yellow);
     }
 
     .idea-card:nth-child(5):hover .idea-title {
-      color: #7b5ea7;
+      color: var(--blue-dark);
+    }
+
+    .idea-card:nth-child(5):hover .idea-number {
+      color: var(--blue-dark);
     }
 
     .idea-content {
@@ -334,36 +347,41 @@
     }
 
     .idea-card:hover .idea-title {
-      color: var(--sky);
+      color: var(--blue);
     }
 
     .idea-card:nth-child(2):hover .idea-title {
-      color: var(--sage);
+      color: var(--orange);
     }
 
     .idea-card:nth-child(3):hover .idea-number {
-      background: var(--gold);
+      background: var(--yellow);
+      color: var(--blue-dark);
     }
 
     .idea-card:nth-child(3):hover .idea-title {
-      color: var(--gold);
+      color: var(--blue-dark);
     }
 
     .idea-card:nth-child(3):hover .idea-arrow {
-      background: var(--gold);
+      background: var(--yellow);
+    }
+
+    .idea-card:nth-child(3):hover .idea-arrow svg {
+      stroke: var(--blue-dark);
     }
 
     .idea-card:nth-child(4):hover .idea-arrow {
-      background: var(--coral);
+      background: var(--orange);
     }
 
-    .idea-card:nth-child(5):hover .idea-arrow {
-      background: #7b5ea7;
+    .idea-card:nth-child(5):hover .idea-arrow svg {
+      stroke: var(--blue-dark);
     }
 
     .idea-hint {
       font-size: 0.95rem;
-      color: #4a5f72;
+      color: var(--text-muted);
     }
 
     .idea-arrow {
@@ -387,19 +405,19 @@
 
     .idea-card:hover .idea-arrow {
       transform: translateX(4px);
-      background: var(--sky);
+      background: var(--blue);
     }
 
     .idea-card:hover .idea-arrow svg {
-      stroke: var(--cream);
+      stroke: var(--white);
     }
 
     .idea-card:nth-child(2):hover .idea-arrow {
-      background: var(--sage);
+      background: var(--orange);
     }
 
     .idea-card:nth-child(3):hover .idea-arrow {
-      background: var(--gold);
+      background: var(--yellow);
     }
 
     .footer-line {
@@ -417,20 +435,21 @@
     }
 
     .how-to-use {
-      margin-top: 1.5rem;
+      max-width: 52ch;
+      margin: 0 auto 3rem;
       padding: 1.25rem 1.5rem;
-      background: rgba(255, 255, 255, 0.55);
-      border: 1px solid rgba(42, 61, 79, 0.08);
-      border-radius: 14px;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 8px;
       opacity: 0;
-      animation: fadeIn 0.6s ease 1.3s forwards;
+      animation: fadeIn 0.6s ease 0.9s forwards;
     }
 
     .how-to-use__title {
       font-family: 'Rubik', 'PT Sans', sans-serif;
       font-size: 1rem;
       font-weight: 700;
-      color: var(--ink);
+      color: var(--blue);
       margin-bottom: 0.75rem;
       text-align: center;
     }
@@ -438,7 +457,7 @@
     .how-to-use__list {
       margin: 0;
       padding-left: 1.25rem;
-      color: #4a5f72;
+      color: var(--text-muted);
       font-size: 0.95rem;
       line-height: 1.6;
     }
@@ -452,7 +471,7 @@
       padding-bottom: 1.5rem;
       text-align: center;
       font-size: 0.85rem;
-      color: #6b7f8f;
+      color: var(--text-muted);
       opacity: 0;
       animation: fadeIn 0.6s ease 1.5s forwards;
     }
@@ -460,48 +479,39 @@
     .copyright a {
       color: inherit;
       text-decoration: none;
-      border-bottom: 1px solid rgba(107, 127, 143, 0.35);
+      border-bottom: 1px solid rgba(0, 86, 179, 0.25);
       transition: color 0.2s ease, border-color 0.2s ease;
     }
 
     .copyright a:hover {
-      color: var(--ink);
-      border-color: var(--ink);
+      color: var(--blue);
+      border-color: var(--blue);
     }
 
     @keyframes fadeIn {
       to { opacity: 1; }
     }
 
-    .pulse-dot {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      background: var(--sky);
-      border-radius: 50%;
-      margin-left: 6px;
-      vertical-align: middle;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.85); }
-    }
-
     .results {
       margin-top: 2.5rem;
       padding: 1.75rem;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(26, 20, 16, 0.1);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px var(--shadow);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 4px 20px var(--shadow);
       opacity: 0;
       transform: translateY(16px);
       transition:
         opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .results-title {
+      font-family: 'Rubik', 'PT Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--blue);
     }
 
     .results.is-visible {
@@ -515,13 +525,6 @@
       justify-content: space-between;
       gap: 1rem;
       margin-bottom: 1.25rem;
-    }
-
-    .results-title {
-      font-family: 'Rubik', 'PT Sans', sans-serif;
-      font-size: 1rem;
-      font-weight: 500;
-      line-height: 1.4;
     }
 
     .results-close {
@@ -539,8 +542,8 @@
     }
 
     .results-close:hover {
-      background: var(--coral);
-      color: var(--cream);
+      background: var(--orange);
+      color: var(--white);
       transform: rotate(90deg);
     }
 
@@ -555,28 +558,28 @@
       display: flex;
       gap: 0.85rem;
       padding: 0.85rem 1rem;
-      background: rgba(245, 239, 230, 0.7);
-      border-radius: 12px;
-      border-left: 3px solid var(--coral);
+      background: var(--cream);
+      border-radius: 8px;
+      border-left: 3px solid var(--blue);
       opacity: 0;
       transform: translateX(-12px);
       animation: resultReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     .results[data-theme="stories"] .result-item {
-      border-left-color: var(--sage);
+      border-left-color: var(--orange);
     }
 
     .results[data-theme="week"] .result-item {
-      border-left-color: var(--gold);
+      border-left-color: var(--yellow);
     }
 
     .results[data-theme="events"] .result-item {
-      border-left-color: var(--coral);
+      border-left-color: var(--orange);
     }
 
     .results[data-theme="exhibitions"] .result-item {
-      border-left-color: #7b5ea7;
+      border-left-color: var(--yellow);
     }
 
     @keyframes resultReveal {
@@ -591,31 +594,31 @@
       font-family: 'Rubik', 'PT Sans', sans-serif;
       font-size: 0.7rem;
       font-weight: 700;
-      color: var(--coral);
+      color: var(--blue);
       margin-top: 0.15rem;
     }
 
     .results[data-theme="stories"] .result-index {
-      color: var(--sage);
+      color: var(--orange);
     }
 
     .results[data-theme="week"] .result-index {
-      color: var(--gold);
+      color: var(--blue-dark);
     }
 
     .results[data-theme="events"] .result-index {
-      color: var(--coral);
+      color: var(--orange);
     }
 
     .results[data-theme="exhibitions"] .result-index {
-      color: #7b5ea7;
+      color: var(--blue-dark);
     }
 
     .result-field {
       display: block;
       font-size: 0.85rem;
       font-weight: 700;
-      color: #1e5a9e;
+      color: var(--blue);
       margin-bottom: 0.25rem;
     }
 
@@ -630,7 +633,7 @@
       font-size: 0.85rem;
       text-transform: none;
       letter-spacing: 0.02em;
-      color: var(--gold);
+      color: var(--orange);
       margin-bottom: 0.2rem;
     }
 
@@ -657,44 +660,44 @@
     }
 
     .btn-primary {
-      background: var(--ink);
-      color: var(--cream);
+      background: var(--blue);
+      color: var(--white);
     }
 
     .btn-primary:hover {
-      background: var(--coral);
-      box-shadow: 0 4px 16px rgba(232, 93, 58, 0.35);
+      background: var(--orange);
+      box-shadow: 0 4px 16px rgba(230, 126, 34, 0.35);
     }
 
     .results[data-theme="stories"] .btn-primary:hover {
-      background: var(--sage);
-      box-shadow: 0 4px 16px rgba(92, 122, 107, 0.35);
+      background: var(--orange);
+      box-shadow: 0 4px 16px rgba(230, 126, 34, 0.35);
     }
 
     .results[data-theme="week"] .btn-primary:hover {
-      background: var(--gold);
-      box-shadow: 0 4px 16px rgba(201, 162, 39, 0.35);
+      background: var(--blue-dark);
+      box-shadow: 0 4px 16px rgba(0, 86, 179, 0.35);
     }
 
     .results[data-theme="events"] .btn-primary:hover {
-      background: var(--coral);
-      box-shadow: 0 4px 16px rgba(232, 93, 58, 0.35);
+      background: var(--orange);
+      box-shadow: 0 4px 16px rgba(230, 126, 34, 0.35);
     }
 
     .results[data-theme="exhibitions"] .btn-primary:hover {
-      background: #7b5ea7;
-      box-shadow: 0 4px 16px rgba(123, 94, 167, 0.35);
+      background: var(--blue-dark);
+      box-shadow: 0 4px 16px rgba(0, 86, 179, 0.35);
     }
 
     .btn-secondary {
       background: transparent;
-      color: var(--ink);
-      border: 1.5px solid rgba(26, 20, 16, 0.15);
+      color: var(--blue);
+      border: 1.5px solid rgba(0, 86, 179, 0.25);
     }
 
     .btn-secondary:hover {
-      border-color: var(--ink);
-      background: rgba(26, 20, 16, 0.04);
+      border-color: var(--blue);
+      background: rgba(0, 86, 179, 0.06);
     }
 
     .idea-card.is-loading {
@@ -707,29 +710,28 @@
     }
 
     .idea-card.is-active {
-      border-color: rgba(232, 93, 58, 0.4);
-      background: rgba(255, 255, 255, 0.85);
-      box-shadow: 0 8px 32px rgba(232, 93, 58, 0.15);
+      border-color: rgba(0, 86, 179, 0.35);
+      box-shadow: 0 8px 24px rgba(0, 86, 179, 0.15);
     }
 
     .idea-card:nth-child(2).is-active {
-      border-color: rgba(92, 122, 107, 0.4);
-      box-shadow: 0 8px 32px rgba(92, 122, 107, 0.15);
+      border-color: rgba(230, 126, 34, 0.35);
+      box-shadow: 0 8px 24px rgba(230, 126, 34, 0.15);
     }
 
     .idea-card:nth-child(3).is-active {
-      border-color: rgba(201, 162, 39, 0.4);
-      box-shadow: 0 8px 32px rgba(201, 162, 39, 0.15);
+      border-color: rgba(255, 204, 0, 0.5);
+      box-shadow: 0 8px 24px rgba(255, 204, 0, 0.2);
     }
 
     .idea-card:nth-child(4).is-active {
-      border-color: rgba(232, 93, 58, 0.4);
-      box-shadow: 0 8px 32px rgba(232, 93, 58, 0.15);
+      border-color: rgba(230, 126, 34, 0.35);
+      box-shadow: 0 8px 24px rgba(230, 126, 34, 0.15);
     }
 
     .idea-card:nth-child(5).is-active {
-      border-color: rgba(123, 94, 167, 0.4);
-      box-shadow: 0 8px 32px rgba(123, 94, 167, 0.15);
+      border-color: rgba(0, 86, 179, 0.35);
+      box-shadow: 0 8px 24px rgba(0, 86, 179, 0.15);
     }
 
     @keyframes spin {
@@ -747,7 +749,7 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--coral);
+      background: var(--blue);
       animation: dotBounce 0.9s ease-in-out infinite;
     }
 
@@ -757,6 +759,21 @@
     @keyframes dotBounce {
       0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
       40% { transform: scale(1); opacity: 1; }
+    }
+
+    @media (max-width: 560px) {
+      .page-header__main {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .page-header h1 {
+        text-align: center;
+      }
+
+      .page-header__illustration {
+        width: min(200px, 70vw);
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -779,18 +796,37 @@
   <main class="page">
     <header class="page-header">
       <div class="page-header__main">
-        <div class="badge">Ростовская областная детская библиотека имени В.М. Величкиной (ГБУК РО «РОДБВ»)<span class="pulse-dot"></span></div>
-
-        <h1>
-          Генератор идей для библиотекарей
-          <span>Посты, мероприятия и выставки для юных читателей</span>
-        </h1>
+        <div class="page-header__text">
+          <h1>
+            ИИ-помощник библиотекаря
+            <span>Идеи для работы</span>
+          </h1>
+        </div>
+        <img
+          class="page-header__illustration"
+          src="ai-assistant.png"
+          alt="ИИ-помощник библиотекаря — робот в библиотеке"
+          width="210"
+          height="210"
+          loading="eager"
+        >
       </div>
     </header>
 
     <p class="subtitle">
-      Выберите раздел — получите готовые идеи для соцсетей, названия мероприятий и книжных выставок по направлениям знаний.
+      Привет! Я твой ИИ-помощник. Меня создала Оксана Глазунова. Я умею придумывать идеи для постов, разрабатывать контент-план и подбирать названия выставок и мероприятий.
     </p>
+
+    <section class="how-to-use" aria-label="Инструкция">
+      <h2 class="how-to-use__title">Как пользоваться</h2>
+      <ol class="how-to-use__list">
+        <li>Выберите раздел: посты, сторис, контент-план, мероприятия или выставки.</li>
+        <li>Нажмите на карточку — идеи появятся ниже на странице.</li>
+        <li>Нажмите «Сгенерировать снова», чтобы получить другие варианты.</li>
+        <li>Кнопка «Скопировать» сохранит результат в буфер обмена.</li>
+        <li>Мероприятия и выставки формируются по направлениям знаний: экология, история, искусство, наука, литература и другие.</li>
+      </ol>
+    </section>
 
     <ul class="ideas-list">
       <li class="idea-card" tabindex="0" role="button" data-type="posts" aria-label="Сгенерировать 5 идей постов для библиотекаря">
@@ -871,19 +907,6 @@
       </div>
     </section>
 
-    <div class="footer-line" aria-hidden="true"></div>
-
-    <section class="how-to-use" aria-label="Инструкция">
-      <h2 class="how-to-use__title">Как пользоваться</h2>
-      <ol class="how-to-use__list">
-        <li>Выберите раздел: посты, сторис, контент-план, мероприятия или выставки.</li>
-        <li>Нажмите на карточку — идеи появятся ниже на странице.</li>
-        <li>Нажмите «Сгенерировать снова», чтобы получить другие варианты.</li>
-        <li>Кнопка «Скопировать» сохранит результат в буфер обмена.</li>
-        <li>Мероприятия и выставки формируются по направлениям знаний: экология, история, искусство, наука, литература и другие.</li>
-      </ol>
-    </section>
-
     <p class="copyright">
       © Глазунова Оксана, <a href="mailto:f1otrsektor@yandex.ru">f1otrsektor@yandex.ru</a>
     </p>
@@ -906,83 +929,159 @@
     ];
 
     const EVENT_NAMES = {
-      экология: ['Зелёная страница', 'Друзья природы', 'Эко-чтение', 'Книжный сад', 'Планета в словах', 'Эко-квест'],
-      история: ['Страницы памяти', 'Герои в книгах', 'Путешествие во времени', 'Летопись чтения', 'Книга и Родина', 'Временной мост'],
-      искусство: ['Цветная палитра', 'Мир иллюстрации', 'Кисть и перо', 'Творческая мастерская', 'Художник за страницей', 'Арт-лаборатория'],
-      наука: ['Маленькие открыватели', 'Звёздный час', 'Лаборатория «Почему?»', 'Космический квест', 'Учёные сказки', 'Опыты на полке'],
-      литература: ['Сказочная мастерская', 'Литературный круг', 'Поэтический час', 'Книжный калейдоскоп', 'Страницы чудес', 'Час любимых книг'],
-      техника: ['Механизмы чудес', 'Юный изобретатель', 'Роботы и книги', 'Техно-квест', 'Инженерная мастерская', 'Умные машины'],
-      философия: ['Большие вопросы', 'Философский кружок', 'Думай и читай', 'Мудрые мысли', 'Разговор о важном', 'Книга и смысл'],
-      география: ['Кругосветное путешествие', 'Карта приключений', 'Мир на ладони', 'Географический квест', 'Страны и народы', 'Путешествие по книгам'],
-      математика: ['Числовые загадки', 'Математический квест', 'Геометрия чудес', 'Считаем вместе', 'Логические игры', 'Задачник приключений'],
-      музыка: ['Музыкальный час', 'Ноты и слова', 'Поющие книги', 'Ритм и рифма', 'Мелодии детства', 'Концерт на полке'],
-      спорт: ['Спортивный час', 'Чемпионы в книгах', 'Олимпийский квест', 'Здоровый образ жизни', 'Движение и чтение', 'Спорт и дружба'],
-      обществознание: ['Гражданский клуб', 'Права и обязанности', 'Наше общество', 'Добрые дела', 'Семейные ценности', 'Мир вокруг нас'],
+      экология: ['Секреты листа', 'Хранители леса', 'Эко-детектив', 'Зелёный компас', 'Книжный сад', 'Планета в словах', 'Ботаника на полке', 'Друзья природы', 'Эко-чтение', 'Листва и легенды'],
+      история: ['Машина времени', 'Страницы памяти', 'Герои в тени', 'Летопись чтения', 'Книга и Родина', 'Временной мост', 'Архив приключений', 'Свидетели эпох', 'Карта прошлого', 'Путешествие во времени'],
+      искусство: ['Цветной шёпот', 'Кисть и перо', 'Мир иллюстрации', 'Арт-лаборатория', 'Художник за страницей', 'Палитра сказок', 'Галерея на полке', 'Творческий взрыв', 'Обложка говорит', 'Мастерская чудес'],
+      наука: ['Лаборатория «Почему?»', 'Маленькие открыватели', 'Космический квест', 'Учёные сказки', 'Звёздный час', 'Опыты на полке', 'Формула удивления', 'Атом приключений', 'Наука без скуки', 'Эксперимент дня'],
+      литература: ['Сказочная мастерская', 'Поэтический час', 'Страницы чудес', 'Литературный круг', 'Книжный калейдоскоп', 'Час любимых книг', 'Герои между строк', 'Автор за кулисами', 'Рифма и радость', 'Волшебное перо'],
+      техника: ['Юный изобретатель', 'Роботы и книги', 'Техно-квест', 'Механизмы чудес', 'Инженерная мастерская', 'Умные машины', 'Гаджет и книга', 'Будущее на полке', 'Шестерёнки и сказки', 'Код приключений'],
+      философия: ['Большие вопросы', 'Думай и читай', 'Мудрые мысли', 'Разговор о важном', 'Книга и смысл', 'Философский кружок', 'Вопрос недели', 'Сто философских «почему»', 'Мир в зеркале слов', 'Размышляем вслух'],
+      география: ['Кругосветка за час', 'Карта приключений', 'Мир на ладони', 'Географический квест', 'Страны и народы', 'Путешествие по книгам', 'Компас читателя', 'Континенты на полке', 'Билет в сказку', 'Глобус открытий'],
+      математика: ['Числовые загадки', 'Геометрия чудес', 'Логические игры', 'Математический квест', 'Задачник приключений', 'Считаем вместе', 'Фигуры и фантазии', 'Уравнение сюрприза', 'Математика в сказках', 'Головоломка дня'],
+      музыка: ['Поющие книги', 'Ноты и слова', 'Ритм и рифма', 'Мелодии детства', 'Концерт на полке', 'Музыкальный час', 'Оркестр страниц', 'Симфония сказок', 'Композитор и читатель', 'Звук за обложкой'],
+      спорт: ['Чемпионы в книгах', 'Олимпийский квест', 'Движение и чтение', 'Спорт и дружба', 'Спортивный час', 'Здоровый образ жизни', 'Марафон страниц', 'Победа и упорство', 'Книга и мяч', 'Зарядка с героями'],
+      обществознание: ['Гражданский клуб', 'Добрые дела', 'Семейные ценности', 'Мир вокруг нас', 'Наше общество', 'Права и обязанности', 'Город добрых дел', 'Школа гражданина', 'Соседи и друзья', 'Честь и отвага'],
     };
 
     const EXHIBITION_NAMES = {
-      экология: ['Зелёная полка', 'Книги о природе', 'Земля — наш дом', 'Экологи в детской литературе', 'Заповедник страниц'],
-      история: ['Подвиг в книгах', 'Герои Отечества', 'Страницы войны и мира', 'История в иллюстрациях', 'Память поколений'],
-      искусство: ['Книжная палитра', 'Иллюстраторы детства', 'Живопись в книгах', 'Шедевры обложек', 'Художники слова'],
-      наука: ['Книги об открытиях', 'От А до Я — наука', 'Космос на полке', 'Умные страницы', 'Великие изобретения'],
-      литература: ['Мир сказки', 'Любимые книги', 'Страницы творчества', 'Герои произведений', 'Автор и читатель'],
-      техника: ['Техника в книгах', 'Изобретатели и открытия', 'Мир механизмов', 'Робототехника на полке', 'Инженерные идеи'],
-      философия: ['Вопросы и ответы', 'Мудрость веков', 'Философия для детей', 'Размышления на полке', 'Великие идеи'],
-      география: ['Мир на полке', 'Страны и континенты', 'Путешественники в книгах', 'География детства', 'Карты и приключения'],
-      математика: ['Математика в книгах', 'Числа и фигуры', 'Занимательная арифметика', 'Головоломки на полке', 'Умная математика'],
-      музыка: ['Музыка в литературе', 'Композиторы и книги', 'Песни и сказки', 'Музыкальные истории', 'Нотная галерея'],
-      спорт: ['Спорт в детской литературе', 'Олимпийские герои', 'Книги о спорте', 'Здоровье и физкультура', 'Чемпионы на полке'],
-      обществознание: ['Общество в книгах', 'Права ребёнка', 'Семья и друзья', 'Гражданин с детства', 'Добро и справедливость'],
+      экология: ['Зелёная полка', 'Заповедник страниц', 'Земля — наш дом', 'Экологи в детской литературе', 'Книги о природе', 'Лес в обложках', 'Эко-галерея', 'Природа говорит', 'Листья и легенды', 'Планета на полке'],
+      история: ['Подвиг в книгах', 'Герои Отечества', 'Память поколений', 'История в иллюстрациях', 'Страницы войны и мира', 'Архив героев', 'Эпохи на полке', 'Свидетели истории', 'Летопись детства', 'Книга и время'],
+      искусство: ['Книжная палитра', 'Шедевры обложек', 'Иллюстраторы детства', 'Живопись в книгах', 'Художники слова', 'Галерея иллюстраций', 'Цвет и сюжет', 'Кисть за страницей', 'Арт на полке', 'Обложка как картина'],
+      наука: ['Космос на полке', 'Великие изобретения', 'Умные страницы', 'Книги об открытиях', 'От А до Я — наука', 'Лаборатория идей', 'Наука в сказках', 'Открытие дня', 'Формулы чудес', 'Учёные и мечты'],
+      литература: ['Мир сказки', 'Герои произведений', 'Страницы творчества', 'Автор и читатель', 'Любимые книги', 'Классика детства', 'Поэзия на полке', 'Сказка живёт', 'Писатели Родины', 'Книжный букет'],
+      техника: ['Робототехника на полке', 'Инженерные идеи', 'Мир механизмов', 'Изобретатели и открытия', 'Техника в книгах', 'Будущее в страницах', 'Гаджеты и герои', 'Машины в литературе', 'Код и книга', 'Техно-галерея'],
+      философия: ['Великие идеи', 'Мудрость веков', 'Философия для детей', 'Размышления на полке', 'Вопросы и ответы', 'Смысл в строках', 'Мыслители детства', 'Этика и книга', 'Большие темы', 'Философский уголок'],
+      география: ['Мир на полке', 'Карты и приключения', 'Страны и континенты', 'Путешественники в книгах', 'География детства', 'Глобус идей', 'Континенты в обложках', 'Дороги в книгах', 'Мир без границ', 'Компас читателя'],
+      математика: ['Числа и фигуры', 'Головоломки на полке', 'Занимательная арифметика', 'Математика в книгах', 'Умная математика', 'Логика и сказки', 'Геометрия на полке', 'Задачи с улыбкой', 'Счёт и приключения', 'Фигуры в литературе'],
+      музыка: ['Нотная галерея', 'Музыка в литературе', 'Композиторы и книги', 'Песни и сказки', 'Музыкальные истории', 'Мелодии на полке', 'Ритм и слово', 'Оркестр книг', 'Звуки детства', 'Поющие страницы'],
+      спорт: ['Олимпийские герои', 'Чемпионы на полке', 'Книги о спорте', 'Спорт в детской литературе', 'Здоровье и физкультура', 'Победители в книгах', 'Движение и мечта', 'Спорт и характер', 'Марафон героев', 'Зарядка сказок'],
+      обществознание: ['Общество в книгах', 'Гражданин с детства', 'Добро и справедливость', 'Семья и друзья', 'Права ребёнка', 'Город в книгах', 'Ценности на полке', 'Мы вместе', 'Школа жизни', 'Соседство и дружба'],
     };
 
     const EVENT_TEMPLATES = [
-      '«{name}» — познавательная программа: {field}',
-      '«{name}»: интерактив по направлению «{field}»',
-      'Семейный клуб «{name}» — {field}',
-      '«{name}» — творческая встреча ({field})',
-      '«{name}» — день открытых дверей ({field})',
-      'Квест-игра «{name}» по направлению {field}',
-      'Мастер-класс «{name}» — тема: {field}',
-      '«{name}» — познавательный час ({field})',
+      '«{name}» — иммерсивное путешествие в мир «{field}»',
+      'Книжный детектив «{name}»: раскрываем тайны {field}',
+      'Лаборатория идей «{name}» — открываем {field} через чтение',
+      'Семейный фестиваль «{name}»: праздник {field} в библиотеке',
+      '«{name}» — интерактивный квест по направлению «{field}»',
+      'Мастерская открытий «{name}» ({field}): творим, играем, читаем',
+      '«{name}» — встреча, где {field} оживает на страницах книг',
+      'Клуб юных эрудитов «{name}» — разговор о {field} без скуки',
+      '«{name}»: театрализованное чтение и игры на тему {field}',
+      'Проект «{name}» — неделя {field} в детской библиотеке',
+      '«{name}» — семейный марафон: {field} от А до Я',
+      'Игра-следопыт «{name}» — ищем ответы в книгах о {field}',
     ];
 
     const EXHIBITION_TEMPLATES = [
-      'Книжная выставка «{name}» — {field}',
-      '«{name}»: тематическая полка ({field})',
-      'Выставка-просмотр «{name}» — направление {field}',
-      'Экспозиция «{name}» по теме «{field}»',
-      '«{name}» — книжная галерея ({field})',
-      'Витрина «{name}» — {field}',
-      'Тематическая экспозиция «{name}» ({field})',
+      'Выставка-открытие «{name}» — {field} в детских книгах',
+      '«{name}»: книжная галерея на тему «{field}»',
+      'Экспозиция «{name}» — путешествие по полке {field}',
+      'Витрина-загадка «{name}»: угадай книгу о {field}',
+      '«{name}» — тематическая экспозиция ({field}) с интерактивом',
+      'Книжный маршрут «{name}» — лучшие издания о {field}',
+      '«{name}»: выставка-просмотр и мини-викторина ({field})',
+      'Полка-открытие «{name}» — {field} глазами иллюстраторов',
+      '«{name}» — экспозиция «{field}» для юных исследователей',
+      'Галерея «{name}»: обложки, герои и факты о {field}',
+      '«{name}» — книжная витрина с сюрпризами ({field})',
+      'Проект «{name}»: {field} на одной полке — от классики до новинок',
+    ];
+
+    const POST_HOOKS = [
+      'Книга vs экран',
+      'Герой недели',
+      'Секрет библиотекаря',
+      'Читательский челлендж',
+      'Загадка полки',
+      'Один день — одна книга',
+      'Если бы герои писали посты',
+      'Библиотека глазами ребёнка',
+      'Новинка, от которой сложно оторваться',
+      'Три причины зайти к нам сегодня',
+    ];
+
+    const POST_ACTIONS = [
+      'снимите карусель из 3–5 кадров и попросите угадать книгу по деталям обложки',
+      'покажите «до и после»: пустая полка и та же полка с новыми поступлениями',
+      'сделайте мини-интервью с юным читателем: «Почему эта книга — огонь?»',
+      'опубликуйте цитату дня и спросите: согласны ли вы с героем?',
+      'соберите коллаж «Книга + предмет из сюжета» и предложите найти связь',
+      'запустите опрос: «Какой жанр читаем на выходных?» — с 4 яркими вариантами',
+      'покажите закулисье: как выбираете книги для витрины — 3–4 живых кадра',
+      'придумайте подпись от имени литературного героя и спросите подписчиков продолжить',
+      'сделайте пост-ребус: эмодзи + намёк на сюжет, ответ — в комментариях',
+      'расскажите историю «Книга, которую никто не замечал — пока не заметили мы»',
+    ];
+
+    const POST_READY = [
+      'Пост «Книга vs Фильм»: два кадра — обложка и кадр из экранизации. Спросите: что оказалось ярче — воображение или экран?',
+      'Рубрика «Если бы герои были блогерами»: придумайте «пост» Каштанки, Айболита или Малыша и Карлсона — подписчики угадывают автора',
+      'Челлендж «Прочитай за завтраком»: пригласите семьи сфотографировать утреннее чтение — репостите лучшие кадры с хэштегом библиотеки',
+      'Пост-загадка «Три предмета — одна книга»: разложите на столе три вещи из сюжета, подписчики ищут название в комментариях',
+      'Серия «Библиотекарь отвечает честно»: коротко и с юмором — на самый неожиданный детский вопрос о книгах',
+      '«Книга, которая меняет настроение»: одна рекомендация + эмодзи-шкала «до/после чтения» — попросите поделиться своими',
+      'Пост «Соседи на полке»: сфотографируйте два несочетаемых жанра рядом — попросите придумать кроссовер-сюжет',
+      'Анонс с интригой: «Завтра в библиотеке случится то, чего не было 100 лет…» — без спойлера, только намёк и время',
+      'Рубрика «Первая строка»: покажите только первое предложение книги — угадайте продолжение',
+      'Пост «Рецепт хорошего вечера»: книга + плед + какао + 20 минут тишины — попросите дополнить рецепт в комментариях',
+      '«Книжный детектив для родителей»: 5 признаков, что ребёнок «тайно» дочитал всю серию ночью под одеялом',
+      'Карусель «5 книг, после которых хочется обнять маму/папу/друга» — тёплая подборка к выходным',
+      'Пост «Новинка недели с сюрпризом»: обложка + одна фраза без спойлеров + вопрос «Кому подарить?»',
+      'Мини-гайд «Как выбрать книгу ребёнку, который говорит “мне нечего читать”» — 4 нестандартных совета',
+      'Пост «Библиотека — это не только книги»: покажите неожиданный уголок — игру, пазл, настолку, уютное кресло',
+      'Рубрика «Цитата, от которой мурашки»: одна сильная строка + «А вам попадались такие?»',
+      'Пост-викторина «Автор или герой?» — две цитаты, угадайте, кто сказал',
+      '«Книга по настроению»: 4 обложки — весело / грустно / страшно / вдохновляюще, подписчики выбирают',
+      'Пост «Секрет идеальной витрины»: покажите процесс — от хаоса книг до готовой композиции за 30 секунд видео',
+      'Приглашение «Принеси свою любимую книгу»: анонс встречи, где дети сами рекомендуют друг другу чтение',
+    ];
+
+    const STORY_HOOKS = [
+      'Стоп-кадр чтения',
+      'Библиотекарь за кадром',
+      'Угадай по звуку',
+      'Книга дня',
+      'Вопрос в лоб',
+      'До и после витрины',
+      'Секретная полка',
+      'Герой выбрал',
+      '15 секунд правды',
+      'Сторис-голосование',
+    ];
+
+    const STORY_ACTIONS = [
+      'замрите с открытой книгой на самой интригующей странице — подписчики угадывают сюжет',
+      'покажите руки, перелистывающие книгу ускоренно — музыка «саспенс», в конце обложка',
+      'запишите, как ребёнок за кадром объясняет сюжет за 10 секунд — без монтажа, живо и смешно',
+      'снимите фрагмент полки крупным планом — «Найди единорога / робота / динозавра»',
+      'сделайте опрос из двух обложек: «Какую читаем на часе сказок?»',
+      'покажите «утро библиотекаря»: кофе, ключ, первая открытая книга дня',
+      'запишите шёпотом первую строчку сказки — «Узнали? Пишите в direct»',
+      'снимите таймлапс оформления витрины за 20–40 секунд',
+      'покажите три предмета из сумки библиотекаря на мероприятие — угадайте, что задумано',
+      'сделайте «книжный свайп»: быстро 5 обложек — подписчики стоп-кадрят понравившуюся',
+    ];
+
+    const STORY_READY = [
+      'Сторис «Стоп-кадр чтения»: замрите на самой интригующей странице — подписчики угадывают книгу и сюжет',
+      'Серия «Библиотекарь отвечает честно»: 15 секунд — забавный детский вопрос о книгах и живой ответ',
+      'Опрос «Какую сказку читаем в субботу?» — 2–3 варианта с обложками, можно добавить «Свой вариант»',
+      'Закулисье: таймлапс — от пустой витрины до готовой тематической экспозиции за 30 секунд',
+      '«Книга дня» с twist: покажите обложку и задайте вопрос «А вы бы дочитали до конца, если бы главный герой…?»',
+      'Мини-загадка от сказочного героя — ответ и разгадка в следующей сторис (серия из 2 частей)',
+      'Сторис «Звук страницы»: ASMR-перелистывание новой книги + вопрос «Узнали по звуку?»',
+      '«Найди на полке»: покажите фрагмент стеллажа — угадайте раздел (сказки, приключения, наука)',
+      'Рубрика «Ребёнок рекомендует»: короткое видео — почему эта книга «лучше всех на свете»',
+      'Анонс мероприятия в формате «три подсказки»: три сторис с намёками, в четвёртой — название и время',
+      'Сторис «Один кадр — одна эмоция»: лицо читателя в момент кульминации сюжета (с согласия родителей)',
+      '«Было / стало»: хаотичная стопка книг → аккуратная полка после субботника с читателями',
+      'Опрос «Сколько книг за месяц?» — варианты с юмором: 0–1 / 2–5 / 6–10 / «Я живу в библиотеке»',
+      'Сторис-челлендж «Прочитай вслух одну страницу» — библиотекарь начинает, подписчики продолжают в комментариях',
+      '«Секретная полка»: медленно приближайте камеру к «спрятанной» книге-новинке под тканью',
     ];
 
     const IDEAS = {
-      posts: [
-        'Книга недели: обложка, краткий анонс и для кого подойдёт (возраст, жанр)',
-        '«5 книг, которые стоит прочитать этой осенью» — подборка с фото полки',
-        'Анонс ближайшего мероприятия: час сказок, мастер-класс или встреча с автором',
-        'Совет родителям: как привить ребёнку любовь к чтению — 3 простых шага',
-        'Знаете ли вы? Интересный факт о писателе, чьи книги есть в нашей библиотеке',
-        'Новые поступления: покажите свежие книги на прилавке или полке',
-        'Рубрика «Маленький читатель рекомендует» — отзыв ребёнка о прочитанной книге',
-        'Викторина: угадайте героя или книгу по одной цитате',
-        'Как устроена библиотека: экскурсия по залам в фотографиях',
-        'Памятка: как оформить читательский билет и что можно взять домой',
-        'День рождения писателя — поздравление и подборка его произведений',
-        'Читательский марафон: приглашение принять участие и условия',
-      ],
-      stories: [
-        'Опрос: «Какую сказку прочитать на следующем часе сказок?» — 2–3 варианта',
-        'Закулисье: как библиотекарь готовит книги к выдаче или оформляет витрину',
-        '«Книга дня» — покажите обложку и задайте вопрос: читали ли вы?',
-        'Мини-загадка от сказочного героя — ответ в следующей сторис',
-        'Короткое видео: первые страницы новой детской книги',
-        'Ребёнок за кадром рассказывает, почему ему понравилась книга',
-        'Анонс завтрашнего мероприятия — время, место, для какого возраста',
-        '«Найди на полке» — покажите фрагмент стеллажа, угадайте раздел',
-        'Сторис-опрос: «Сколько книг вы прочитали за месяц?»',
-        'Поздравление юного читателя с получением награды за читательский марафон',
-      ],
       week: {
         days: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
         topics: [
@@ -1059,9 +1158,9 @@
         let text = '';
         let attempts = 0;
 
-        while (attempts < 12) {
-          const name = names[Math.floor(Math.random() * names.length)];
-          const template = templates[Math.floor(Math.random() * templates.length)];
+        while (attempts < 20) {
+          const name = pickOne(names);
+          const template = pickOne(templates);
           text = fillTemplate(template, name, field.label);
           if (!usedTexts.has(text)) break;
           attempts++;
@@ -1076,12 +1175,30 @@
       });
     }
 
+    function pickOne(pool) {
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+
+    function buildPostPool() {
+      const composed = POST_HOOKS.map((hook) =>
+        `Пост «${hook}»: ${pickOne(POST_ACTIONS)}`
+      );
+      return [...POST_READY, ...composed];
+    }
+
+    function buildStoryPool() {
+      const composed = STORY_HOOKS.map((hook) =>
+        `Сторис «${hook}»: ${pickOne(STORY_ACTIONS)}`
+      );
+      return [...STORY_READY, ...composed];
+    }
+
     function generatePosts() {
-      return pickRandom(IDEAS.posts, CONFIG.posts.count).map((text) => ({ text }));
+      return pickRandom(buildPostPool(), CONFIG.posts.count).map((text) => ({ text }));
     }
 
     function generateStories() {
-      return pickRandom(IDEAS.stories, CONFIG.stories.count).map((text) => ({ text }));
+      return pickRandom(buildStoryPool(), CONFIG.stories.count).map((text) => ({ text }));
     }
 
     function generateWeek() {
